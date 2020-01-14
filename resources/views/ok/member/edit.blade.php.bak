@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h3>图书信息添加修改</h3>
+
+    <form   method="post" action="{{url('/ok/update/'.$data->m_id)}}">
+    @csrf
+    <table>
+        <tr>
+            <td>新闻作者</td>
+            <td><input type="text" name="m_name"  value="{{$data->m_name}}" ></td>
+        </tr>
+        <tr>
+            <td>新闻标题</td>
+            <td><input type="text" name="m_account" value="{{$data->m_account}}" ></td>
+        </tr>
+        <tr>
+            <td>售价</td>
+            <td><input type="text" name="m_department"  value="{{$data->m_department}}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

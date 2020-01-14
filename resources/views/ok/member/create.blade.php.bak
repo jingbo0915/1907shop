@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h3>新闻信息添加列表</h3>
+<form class="form-horizontal" role="form" method="post" action="{{url('member/store')}}">
+    @csrf
+<table>
+    <tr>
+        <td>新闻作者</td>
+        <td><input type="text" name="m_name">
+			 
+		</td>
+    </tr>
+    <tr>
+        <td>新闻标题</td>
+        <td><input type="text" name="m_account"></td>
+    </tr>
+    <tr>
+        <td>新闻分类</td>
+        <td><input type="text" name="m_department"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit"></td>
+    </tr>
+</table>
+    </form>
+</body>
+</html>

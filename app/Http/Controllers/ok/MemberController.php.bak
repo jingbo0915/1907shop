@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Http\Controllers\ok;
+use DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Member;
+class MemberController extends Controller
+{
+    //展示页面
+    public function index()
+    {
+
+         //$data =DB::table('member')->orderBy('m_id','desc')->paginate(2);
+        $data=Member::orderBy('m_id','desc')->paginate(2);
+		$query=request()->all();
+		 if(request()->ajax()){
+        return view('ok.member.ajaxindex',['data'=>$data,'query'=>$query]);
+        }
+         return view('ok.member.index',['data'=>$data,'query'=>$query]);
+    }
+
+    //添加展示页面
+    public function create()
+    {
+        return view('ok.member.create');
+    }
+    //执行添加页面
+    public function store(Request $request)
+    {
+        $post = $request->except('_token');
+		 
+
+        $res =Member::insert($post);
+        //dd( $res);
+        if($res){
+            return redirect('/member');
+        }
+    }
+    public function edit($id)
+    {
+        //echo $id;
+        $data = DB::table('member')->where('m_id',$id)->first();
+
+         //dd($data);
+        return view('ok.member.edit',['data'=>$data]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post=$request->except('_token');
+        $res=DB::table('member')->where('m_id',$id)->update($post);
+        // dd($res);
+        if($res!==false){
+            return redirect('/member');
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        $res =DB::table('member')->where('m_id',$id)->delete();
+        if($res){
+            return redirect('/member');
+        }
+    }
+}

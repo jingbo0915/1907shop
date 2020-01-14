@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+	  <script src="/static/admin/js/jquery.js"></script>
+</head>
+<body>
+    <h3>新闻信息展示</h3>
+    <a href="{{url('member/create')}}">添加</a>
+    <table border="1">
+        <tr>
+            <td>新闻ID</td>
+            <td>新闻作者</td>
+            <td>新闻标题</td>
+            <td>新闻分类</td>
+            <td>操作</td>
+        </tr>
+        @foreach ($data as $v)
+        <tr>
+            <td>{{$v->m_id}}</td>
+            <td>{{$v->m_name}}</td>
+            <td>{{$v->m_account}}</td>
+            <td>{{$v->m_department}}</td>
+            <td><a href="{{url('/member/edit/'.$v->m_id)}}" class="btn btn-success">编辑</a>|<a href="{{url('/member/del/'.$v->m_id)}}" class="btn btn-danger">删除</a></td>
+        </tr>
+        @endforeach
+
+    </table>
+
+      {{$data->links()}}
+
+</body>
+</html>
+
+  <script>
+	
+	 $(function(){
+        $(document).on("click",'.pagination a',function(){
+            var url =$(this).attr('href');
+            $.get(url,function(res){
+                $('tbody').html(res);
+            });
+            return false;
+
+
+        });
+    })
+  </script>
